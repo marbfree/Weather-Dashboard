@@ -1,0 +1,14 @@
+:root {
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+header {
+    background-image: linear-gradient(to right, rgb(7, 7, 242), rgb(106, 5, 160) );
+    text-align: center;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 2em;
+    -webkit-text-fill-color: aliceblue;
+}
