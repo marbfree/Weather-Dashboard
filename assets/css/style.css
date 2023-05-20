@@ -12,3 +12,7 @@ header {
     font-size: 2em;
     -webkit-text-fill-color: aliceblue;
 }
+
+.container {
+    border-color: solid 1px rgb(7, 7, 242);
+}
