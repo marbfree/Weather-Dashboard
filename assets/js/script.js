@@ -16,7 +16,7 @@ function getApi(){
         .then(function (data){
             for (let i = 0; i < data.length; i++){
               let cityDaily = document.getElementById("daily");
-              cityDaily.textContent = data[i].city;
+              cityDaily.textContent = data[i].name;
             console.log(data[i]);
             console.log(data[i]);}
         });  
