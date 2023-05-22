@@ -9,7 +9,8 @@ function getApi(){
     let getCity = localStorage.setItem("cityName", cityNameVal);
     console.log(getCity);
     searchApi(cityNameVal);
-}
+};
+
 
 //    get latitude and longitude from api call
     
@@ -17,8 +18,7 @@ function getApi(){
         console.log(cityNameVal);  
 
     let requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=` + cityNameVal + `&limit=1&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
-    let requestUrlLatLon = `http://api.openweathermap.org/geo/1.0/reverse?` +lat={lat}&lon={lon} + `&limit=1&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
-
+    
     fetch(requestUrl)
         .then(function (response){
             return response.json();
@@ -27,16 +27,33 @@ function getApi(){
             console.log(data);
             for (let i = 0; i < data.length; i++){
               let cityDaily = document.querySelector("#currentCity");
-              let lonDaily = document.querySelector("#currentLongitude");
-              let latDaily = document.querySelector("#currentLatitude");
+              let lonDaily = data[i].lon;
+              let latDaily = data[i].lat;
               cityDaily.textContent = data[i].name;
-              lonDaily.textContent = data[i].lon;
-              latDaily.textContent = data[i].lat;
-            console.log(data[i]);
-            console.log(data[i]);}
-        });  
+            // console.log(data[i]);
+            // console.log(lonDaily);
+            // console.log(latDaily);
+        function getCoord(){
+            localStorage.setItem("latitude", latDaily);
+            localStorage.setItem("longitude", lonDaily);
+        }
+        getCoord();
+        }
+        })
+        
+    
 
-    }
+    let requestUrlLatLon = `http://api.openweathermap.org/geo/1.0/reverse?` + latDaily + '&' + lonDaily + `&limit=1&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
+    
+    fetch(requestUrlLatLon)
+        .then(function (response){
+            return response.json();
+        })
+        .then(function (data){
+            console.log(data);
+        })
+
+    };  
 
 
 submitButton.addEventListener("click", getApi);
