@@ -33,18 +33,16 @@ function getApi(){
             // console.log(data[i]);
             // console.log(lonDaily);
             // console.log(latDaily);
-        function getCoord(){
             localStorage.setItem("latitude", latDaily);
             localStorage.setItem("longitude", lonDaily);
-        }
-        getCoord();
-        }
-        })
+        
+        
+        
         
     
 
-    let requestUrlLatLon = `http://api.openweathermap.org/geo/1.0/reverse?` + latDaily + '&' + lonDaily + `&limit=1&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
-    
+    let requestUrlLatLon = `https://api.openweathermap.org/data/2.5/weather?lat=` + latDaily + `&lon=` + lonDaily + `&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
+
     fetch(requestUrlLatLon)
         .then(function (response){
             return response.json();
@@ -53,7 +51,7 @@ function getApi(){
             console.log(data);
         })
 
-    };  
+ } })};  
 
 
 submitButton.addEventListener("click", getApi);
