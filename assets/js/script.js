@@ -1,31 +1,34 @@
 let apiKey = 'd9e8fa6428a49966fe0b0aa58e369bf7'
-// let cityNameVal = document.querySelector("input").value
-// console.log(cityNameVal);
 var submitButton = document.querySelector(".btn");
 
-// add function to get input to add to api
-
-
-
 function getApi(){
+    // get value from input
     let cityNameVal = document.querySelector("input").value;
     console.log(cityNameVal);
-
-   let getCity = localStorage.setItem("cityName", cityNameVal);
+    // set value to local storage
+    let getCity = localStorage.setItem("cityName", cityNameVal);
     console.log(getCity);
+    
 
-    // let cityArr = document.location.search.split('&');
-    // console.log(cityArr);
-
-    // let city = cityArr[0].split('=').pop();
-
-    // searchApi(city);
-    // console.log(searchApi);
-
-function searchApi(city){
-
-        let requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit=1&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
+    // get value from local storage to plug into url
+        // relplace search with city name
+    
+  function searchApi(){
         
+    // seperate city from limit in query parameters
+    let cityArr = document.location.search.split('&');
+    console.log(cityArr);
+    // replace city name with city name from input value
+    let addCity = cityArr[0].replace(cityNameVal);
+    console.log(addCity);
+}
+
+    searchApi();
+    console.log(searchApi);
+
+    let requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit=1&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
+
+
     fetch(requestUrl)
         .then(function (response){
             return response.json();
@@ -42,12 +45,11 @@ function searchApi(city){
             console.log(data[i]);}
         });  
 };
-}
+
 
 submitButton.addEventListener("click", getApi);
 
 
-// get value from input
 // pass value to url
 // get lat/long from query
 // resubmit using lat/long to get 5 day forcast
