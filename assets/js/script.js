@@ -12,8 +12,7 @@ function getApi(){
 };
 
 
-//    get latitude and longitude from api call
-    
+//    get city name for display and latitude/longitude for weather api (input value)
   function searchApi(cityNameVal){
         console.log(cityNameVal);  
 
@@ -25,38 +24,34 @@ function getApi(){
         })
         .then(function (data){
             console.log(data);
-            for (let i = 0; i < data.length; i++){
-              let cityDaily = document.querySelector("#currentCity");
-              let lonDaily = data[i].lon;
-              let latDaily = data[i].lat;
-              cityDaily.textContent = data[i].name;
-            // console.log(data[i]);
-            // console.log(lonDaily);
-            // console.log(latDaily);
-            localStorage.setItem("latitude", latDaily);
-            localStorage.setItem("longitude", lonDaily);
+              let lonDaily = data[0].lon;
+              let latDaily = data[0].lat;
+            let city = document.getElementById('currentCity')
+            city.textContent = data[0].name;
         
+
         
-        
-        
+//  2nd Api call to get weather data using latitude and longitude retreived from first api call
+    let requestUrlLatLon = `https://api.openweathermap.org/data/2.5/weather?lat=` + latDaily + `&lon=` + lonDaily + `&units=imperial&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
     
-
-    let requestUrlLatLon = `https://api.openweathermap.org/data/2.5/weather?lat=` + latDaily + `&lon=` + lonDaily + `&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
-
     fetch(requestUrlLatLon)
         .then(function (response){
             return response.json();
         })
         .then(function (data){
             console.log(data);
+            let weather = document.getElementById('currentWeather');
+            let temp = document.getElementById('currentTemp');           
+            weather.textContent = "Current Sky: " + data.weather[0].main;
+            temp.textContent = "Current Temp: " + data.main.temp
+            console.log(data.main);
+            console.log(data.main.temp);
         })
 
- } })};  
+ })};
 
 
 submitButton.addEventListener("click", getApi);
 
 
-// pass value to url
-// get lat/long from query
-// resubmit using lat/long to get 5 day forcast
+//display data to page
