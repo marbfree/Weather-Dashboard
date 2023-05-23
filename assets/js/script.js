@@ -8,11 +8,11 @@ let fourDay = document.getElementById("fourDay");
 let fiveDay = document.getElementById("fiveDay");
 
 date.textContent = dayjs().format('MM/DD/YYYY');
-nextDate.textContent = dayjs().add(1, "day").format('MM/DD/YYYY');
-twoDay.textContent = dayjs().add(2, "day").format('MM/DD/YYYY')
-threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YYYY')
-fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YYYY')
-fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY')
+nextDate.textContent = dayjs().add(1, "day").format('MM/DD/YY');
+twoDay.textContent = dayjs().add(2, "day").format('MM/DD/YY')
+threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YY')
+fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YY')
+fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YY')
 
 
 
