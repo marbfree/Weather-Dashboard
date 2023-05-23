@@ -43,10 +43,22 @@ function getApi(){
             let weather = document.getElementById('currentWeather');
             let temp = document.getElementById('currentTemp');           
             weather.textContent = "Current Sky: " + data.weather[0].main;
-            temp.textContent = "Current Temp: " + data.main.temp
+            temp.textContent = "Current Temp: " + data.main.temp + " F";
             console.log(data.main);
             console.log(data.main.temp);
-        })
+
+    let fiveDay = `api.openweathermap.org/data/2.5/forecast?lat=` + latDaily + `&lon=` + lonDaily + `&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
+  
+    fetch(fiveDay)
+            .then(function (response){
+                return response.json();
+            })
+            .then(function(data){
+                console.log(data);
+            })
+})
+    
+    
 
  })};
 
