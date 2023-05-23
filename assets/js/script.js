@@ -8,11 +8,11 @@ let fourDay = document.getElementById("fourDay");
 let fiveDay = document.getElementById("fiveDay");
 
 date.textContent = dayjs().format('MM/DD/YYYY');
-nextDate.textContent = dayjs().add(1, "day").format('MM/DD/YY');
-twoDay.textContent = dayjs().add(2, "day").format('MM/DD/YY')
-threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YY')
-fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YY')
-fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YY')
+nextDate.textContent = dayjs().add(1, "day").format('MM/DD/YYYY');
+twoDay.textContent = dayjs().add(2, "day").format('MM/DD/YYYY')
+threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YYYY')
+fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YYYY')
+fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY')
 
 
 
@@ -59,7 +59,8 @@ function getApi(){
             let weather = document.getElementById('currentWeather');
             let temp = document.getElementById('currentTemp');           
             weather.textContent = "Current Sky: " + data.weather[0].main;
-            temp.textContent = "Current Temp: " + data.main.temp + " F";
+            temp.textContent = "Current Temp: " + data.main.temp + " °F";
+            
             console.log(data.main);
             console.log(data.main.temp);
 
@@ -72,6 +73,9 @@ function getApi(){
         })
         .then(function(data){
         console.log(data);
+        
+       
+
         let oneSky = document.getElementById("dayOneSky");    
         let oneTemp = document.getElementById("dayOneTemp");
         let oneWind = document.getElementById("dayOneWind");
@@ -88,29 +92,26 @@ function getApi(){
         let fiveTemp = document.getElementById("dayFiveTemp");
         let fiveWind = document.getElementById("dayFiveWind");
         oneSky.textContent = "Sky: " + data.list[0].weather[0].main;
-        oneTemp.textContent = "Temp: " + data.list[0].main.temp + ' F';
+        oneTemp.textContent = "Temp: " + data.list[0].main.temp + ' °F';
         oneWind.textContent = "Wind Speed: " + data.list[0].wind.speed;
         twoSky.textContent = "Sky: " + data.list[1].weather[0].main;
-        twoTemp.textContent = "Temp: " + data.list[1].main.temp + ' F';
+        twoTemp.textContent = "Temp: " + data.list[1].main.temp + ' °F';
         twoWind.textContent = "Wind Speed: " + data.list[1].wind.speed;
         threeSky.textContent = "Sky: " + data.list[2].weather[0].main;
-        threeTemp.textContent = "Temp: " + data.list[2].main.temp + ' F';
+        threeTemp.textContent = "Temp: " + data.list[2].main.temp + ' °F';
         threeWind.textContent = "Wind Speed: " + data.list[2].wind.speed;
         fourSky.textContent = "Sky: " + data.list[3].weather[0].main;
-        fourTemp.textContent = "Temp: " + data.list[3].main.temp + ' F';
+        fourTemp.textContent = "Temp: " + data.list[3].main.temp + ' °F';
         fourWind.textContent = "Wind Speed: " + data.list[3].wind.speed;
         fiveSky.textContent = "Sky: " + data.list[4].weather[0].main;
-        fiveTemp.textContent = "Temp: " + data.list[4].main.temp + ' F';
+        fiveTemp.textContent = "Temp: " + data.list[4].main.temp + ' °F';
         fiveWind.textContent = "Wind Speed: " + data.list[4].wind.speed;
-        })
 })
-    
-    
-
- })};
+})
+})};
 
 
 submitButton.addEventListener("click", getApi);
 
 
-//display data to page
+//figure out how to use icons to page
