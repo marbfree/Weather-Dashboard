@@ -2,3 +2,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
 }
+
+#currentDate {
+    font-size: 2em;
+}

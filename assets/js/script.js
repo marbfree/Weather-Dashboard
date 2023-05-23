@@ -32,7 +32,7 @@ function getApi(){
   function searchApi(cityNameVal){
         console.log(cityNameVal);  
 
-    let requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=` + cityNameVal + `&limit=1&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
+    let requestUrl = `https://api.openweathermap.org/geo/1.0/direct?q=` + cityNameVal + `&limit=1&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
     
     fetch(requestUrl)
         .then(function (response){
@@ -63,7 +63,7 @@ function getApi(){
             console.log(data.main);
             console.log(data.main.temp);
 
-    let fiveDay = `http://api.openweathermap.org/data/2.5/forecast?lat=` + latDaily + `&lon=` + lonDaily + `&units=imperial&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
+    let fiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=` + latDaily + `&lon=` + lonDaily + `&units=imperial&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
   
     // 5 day forcast
     fetch(fiveDay)
