@@ -1,5 +1,20 @@
 let apiKey = 'd9e8fa6428a49966fe0b0aa58e369bf7'
 var submitButton = document.querySelector(".btn");
+let date = document.getElementById("currentDate");
+let nextDate = document.getElementById("nextDay");
+let twoDay = document.getElementById("twoDay");
+let threeDay = document.getElementById("threeDay");
+let fourDay = document.getElementById("fourDay");
+let fiveDay = document.getElementById("fiveDay");
+
+date.textContent = dayjs().format('MM/DD/YYYY');
+nextDate.textContent = dayjs().add(1, "day").format('MM/DD/YYYY');
+twoDay.textContent = dayjs().add(2, "day").format('MM/DD/YYYY')
+threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YYYY')
+fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YYYY')
+fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY')
+
+
 
 function getApi(){
     // get value from input
@@ -10,6 +25,7 @@ function getApi(){
     console.log(getCity);
     searchApi(cityNameVal);
 };
+
 
 
 //    get city name for display and latitude/longitude for weather api (input value)
@@ -26,7 +42,7 @@ function getApi(){
             console.log(data);
               let lonDaily = data[0].lon;
               let latDaily = data[0].lat;
-            let city = document.getElementById('currentCity')
+            let city = document.getElementById('currentCity'); 
             city.textContent = data[0].name;
         
 
@@ -49,6 +65,7 @@ function getApi(){
 
     let fiveDay = `http://api.openweathermap.org/data/2.5/forecast?lat=` + latDaily + `&lon=` + lonDaily + `&units=imperial&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
   
+    // 5 day forcast
     fetch(fiveDay)
         .then(function (response){
             return response.json();
