@@ -47,15 +47,45 @@ function getApi(){
             console.log(data.main);
             console.log(data.main.temp);
 
-    let fiveDay = `api.openweathermap.org/data/2.5/forecast?lat=` + latDaily + `&lon=` + lonDaily + `&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
+    let fiveDay = `http://api.openweathermap.org/data/2.5/forecast?lat=` + latDaily + `&lon=` + lonDaily + `&units=imperial&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
   
     fetch(fiveDay)
-            .then(function (response){
-                return response.json();
-            })
-            .then(function(data){
-                console.log(data);
-            })
+        .then(function (response){
+            return response.json();
+        })
+        .then(function(data){
+        console.log(data);
+        let oneSky = document.getElementById("dayOneSky");    
+        let oneTemp = document.getElementById("dayOneTemp");
+        let oneWind = document.getElementById("dayOneWind");
+        let twoSky = document.getElementById("dayTwoSky");    
+        let twoTemp = document.getElementById("dayTwoTemp");
+        let twoWind = document.getElementById("dayTwoWind");
+        let threeSky = document.getElementById("dayThreeSky");    
+        let threeTemp = document.getElementById("dayThreeTemp");
+        let threeWind = document.getElementById("dayThreeWind");
+        let fourSky = document.getElementById("dayFourSky");    
+        let fourTemp = document.getElementById("dayFourTemp");
+        let fourWind = document.getElementById("dayFourWind");
+        let fiveSky = document.getElementById("dayFiveSky");    
+        let fiveTemp = document.getElementById("dayFiveTemp");
+        let fiveWind = document.getElementById("dayFiveWind");
+        oneSky.textContent = "Sky: " + data.list[0].weather[0].main;
+        oneTemp.textContent = "Temp: " + data.list[0].main.temp + ' F';
+        oneWind.textContent = "Wind Speed: " + data.list[0].wind.speed;
+        twoSky.textContent = "Sky: " + data.list[1].weather[0].main;
+        twoTemp.textContent = "Temp: " + data.list[1].main.temp + ' F';
+        twoWind.textContent = "Wind Speed: " + data.list[1].wind.speed;
+        threeSky.textContent = "Sky: " + data.list[2].weather[0].main;
+        threeTemp.textContent = "Temp: " + data.list[2].main.temp + ' F';
+        threeWind.textContent = "Wind Speed: " + data.list[2].wind.speed;
+        fourSky.textContent = "Sky: " + data.list[3].weather[0].main;
+        fourTemp.textContent = "Temp: " + data.list[3].main.temp + ' F';
+        fourWind.textContent = "Wind Speed: " + data.list[3].wind.speed;
+        fiveSky.textContent = "Sky: " + data.list[4].weather[0].main;
+        fiveTemp.textContent = "Temp: " + data.list[4].main.temp + ' F';
+        fiveWind.textContent = "Wind Speed: " + data.list[4].wind.speed;
+        })
 })
     
     
