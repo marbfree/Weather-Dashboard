@@ -15,6 +15,7 @@ threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YYYY')
 fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YYYY')
 fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY')
 
+
 function getApi(){
     // get value from input
     let cityNameVal = document.querySelector("input").value;
@@ -117,4 +118,7 @@ submitButton.addEventListener("click", function(){
 
 
 //figure out how to use icons to page
-// add city to page using local storage and click function
+// add multiple cities to page using local storage
+    // how to get local storage to stay on page
+// how to click on recent cities to view their data
+// how to adjust layout for recent cities
