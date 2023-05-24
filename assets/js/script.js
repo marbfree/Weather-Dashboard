@@ -6,7 +6,6 @@ let twoDay = document.getElementById("twoDay");
 let threeDay = document.getElementById("threeDay");
 let fourDay = document.getElementById("fourDay");
 let fiveDay = document.getElementById("fiveDay");
-let recentCity = document.querySelector("#search");
 let cityList = JSON.parse(localStorage.getItem("cityNames")) || [];
 console.log(cityList);
 date.textContent = dayjs().format('MM/DD/YYYY');
@@ -16,13 +15,11 @@ threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YYYY')
 fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YYYY')
 fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY')
 
-
+// this function get the value from the input and sets to local storage
 function getApi(){
-    // get value from input
     let cityNameVal = document.querySelector("input").value;
-    cityList.unshift(cityNameVal)
-    // set value to local storage
     let getCity = localStorage.setItem("cityNames", JSON.stringify(cityList));
+    cityList.unshift(cityNameVal);
     displaySearchHistory();
     console.log(getCity);
     searchApi(cityNameVal);
@@ -37,12 +34,17 @@ function displaySearchHistory(){
         recentSearchBtn.classList.add("searchHistoryBtns");
         recentSearchBtn.textContent = cityListArr[i];
         searchHistoryEl.append(recentSearchBtn);
-    }
-    // to press recent city search buttons to display current and 5 day forecast
+        recentSearchBtn.addEventListener("click", function(){
+            console.log("button clicked")
+        });
+    };
+};
+
+
+  // to press recent city search buttons to display current and 5 day forecast
     // click button to take to certain page
     // how does it know what the button says
     // create a click event
-}
 
 //    get city name for display and latitude/longitude for weather api (input value)
   function searchApi(cityNameVal){
@@ -73,12 +75,14 @@ function displaySearchHistory(){
         .then(function (data){
             console.log(data);
             let weather = document.getElementById('currentWeather');
-            let temp = document.getElementById('currentTemp');           
+            let temp = document.getElementById('currentTemp');    
+            // let icon = document.getElementById('weatherIcon');
             weather.textContent = "Current Sky: " + data.weather[0].main;
             temp.textContent = "Current Temp: " + data.main.temp + " °F";
-            
-            console.log(data.main);
-            console.log(data.main.temp);
+            // if (data.weather[0].main === Clear){
+            //     let icon = document.createElement("i");
+            //     icon.classList.add('fa-light fa-sun');
+            // }
 
     let fiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=` + latDaily + `&lon=` + lonDaily + `&units=imperial&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
   
@@ -127,12 +131,9 @@ function displaySearchHistory(){
 })};
 
 
-submitButton.addEventListener("click", getApi)
+submitButton.addEventListener("click", getApi);
 displaySearchHistory()
 
 
 //figure out how to use icons to page
-// add multiple cities to page using local storage
-    // how to get local storage to stay on page
 // how to click on recent cities to view their data
-// how to adjust layout for recent cities
