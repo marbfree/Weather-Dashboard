@@ -7,7 +7,8 @@ let threeDay = document.getElementById("threeDay");
 let fourDay = document.getElementById("fourDay");
 let fiveDay = document.getElementById("fiveDay");
 let recentCity = document.querySelector("#search");
-
+let cityList = JSON.parse(localStorage.getItem("cityNames")) || [];
+console.log(cityList);
 date.textContent = dayjs().format('MM/DD/YYYY');
 nextDate.textContent = dayjs().add(1, "day").format('MM/DD/YYYY');
 twoDay.textContent = dayjs().add(2, "day").format('MM/DD/YYYY')
@@ -19,14 +20,31 @@ fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY')
 function getApi(){
     // get value from input
     let cityNameVal = document.querySelector("input").value;
-    console.log(cityNameVal);
+    cityList.push(cityNameVal)
     // set value to local storage
-    let getCity = localStorage.setItem("cityName", cityNameVal);
+    let getCity = localStorage.setItem("cityNames", JSON.stringify(cityList));
+    displaySearchHistory();
     console.log(getCity);
     searchApi(cityNameVal);
 };
 
-
+function displaySearchHistory(){
+    let searchHistoryEl =  document.querySelector("#search")
+    searchHistoryEl.innerHTML = ""
+    let cityListArr = JSON.parse(localStorage.getItem("cityNames")) || [];
+    for (let i = 0; i < cityListArr.length; i++) {
+        let recentSearchBtn = document.createElement("button");
+        recentSearchBtn.classList.add("searchHistoryBtns");
+        recentSearchBtn.textContent = cityListArr[i];
+        searchHistoryEl.append(recentSearchBtn);
+    }
+    // create a variable = array in local storage using getItem
+    // for loop through the array of city names
+        // create a button to each city in the array 
+        // add class 
+        // text.content to add to button
+        // append button to div (#search)
+}
 
 //    get city name for display and latitude/longitude for weather api (input value)
   function searchApi(cityNameVal){
@@ -112,9 +130,7 @@ function getApi(){
 
 
 submitButton.addEventListener("click", getApi)
-submitButton.addEventListener("click", function(){
-    recentCity.textContent = localStorage.getItem("cityName")
-})
+displaySearchHistory()
 
 
 //figure out how to use icons to page
