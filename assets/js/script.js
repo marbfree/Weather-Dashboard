@@ -7,7 +7,10 @@ let threeDay = document.getElementById("threeDay");
 let fourDay = document.getElementById("fourDay");
 let fiveDay = document.getElementById("fiveDay");
 let cityList = JSON.parse(localStorage.getItem("cityNames")) || [];
-console.log(cityList);
+let cityHistoryBtns = document.querySelector(".searchHistoryBtns");
+let searchHistoryEl =  document.querySelector("#search")
+let clearInput = document.querySelector('#cityValue')
+
 date.textContent = dayjs().format('MM/DD/YYYY');
 nextDate.textContent = dayjs().add(1, "day").format('MM/DD/YYYY');
 twoDay.textContent = dayjs().add(2, "day").format('MM/DD/YYYY')
@@ -15,7 +18,7 @@ threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YYYY')
 fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YYYY')
 fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY')
 
-// this function get the value from the input and sets to local storage
+// this function gets the value from the input and sets to local storage
 function getApi(){
     let cityNameVal = document.querySelector("input").value;
     let getCity = localStorage.setItem("cityNames", JSON.stringify(cityList));
@@ -23,24 +26,25 @@ function getApi(){
     displaySearchHistory();
     console.log(getCity);
     searchApi(cityNameVal);
+    clearInput.value = "" ;
 };
 
+// this function displays the recent search history below search button
 function displaySearchHistory(){
-    let searchHistoryEl =  document.querySelector("#search")
+    // let searchHistoryEl =  document.querySelector("#search")
     searchHistoryEl.innerHTML = ""
     let cityListArr = JSON.parse(localStorage.getItem("cityNames")) || [];
     for (let i = 0; i < 3; i++) {
         let recentSearchBtn = document.createElement("button");
+        recentSearchBtn.setAttribute("data-search", cityList[i])
         recentSearchBtn.classList.add("searchHistoryBtns");
         recentSearchBtn.textContent = cityListArr[i];
         searchHistoryEl.append(recentSearchBtn);
-        recentSearchBtn.addEventListener("click", function(){
-            console.log("button clicked")
-        });
-    };
-};
 
+}};
 
+// input.value = "" - to reset input area
+// data search attribute, for loop 
   // to press recent city search buttons to display current and 5 day forecast
     // click button to take to certain page
     // how does it know what the button says
@@ -130,10 +134,20 @@ function displaySearchHistory(){
 })
 })};
 
+function searchHistoryClick(e) {
+    let entryButton = e.target
+    let search = entryButton.getAttribute("data-search");
+    searchApi(search);
+    // if it doesn't match, return
+}
 
 submitButton.addEventListener("click", getApi);
+searchHistoryEl.addEventListener("click", searchHistoryClick)
 displaySearchHistory()
 
 
 //figure out how to use icons to page
 // how to click on recent cities to view their data
+// one event listener, variable with the id "search"
+// function searchHistory(), use e for event listener
+// getAttribute
