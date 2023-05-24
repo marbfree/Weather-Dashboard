@@ -6,6 +6,7 @@ let twoDay = document.getElementById("twoDay");
 let threeDay = document.getElementById("threeDay");
 let fourDay = document.getElementById("fourDay");
 let fiveDay = document.getElementById("fiveDay");
+let recentCity = document.querySelector("#search");
 
 date.textContent = dayjs().format('MM/DD/YYYY');
 nextDate.textContent = dayjs().add(1, "day").format('MM/DD/YYYY');
@@ -13,8 +14,6 @@ twoDay.textContent = dayjs().add(2, "day").format('MM/DD/YYYY')
 threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YYYY')
 fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YYYY')
 fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY')
-
-
 
 function getApi(){
     // get value from input
@@ -111,7 +110,11 @@ function getApi(){
 })};
 
 
-submitButton.addEventListener("click", getApi);
+submitButton.addEventListener("click", getApi)
+submitButton.addEventListener("click", function(){
+    recentCity.textContent = localStorage.getItem("cityName")
+})
 
 
 //figure out how to use icons to page
+// add city to page using local storage and click function
