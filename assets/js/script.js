@@ -20,7 +20,7 @@ fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY')
 function getApi(){
     // get value from input
     let cityNameVal = document.querySelector("input").value;
-    cityList.push(cityNameVal)
+    cityList.unshift(cityNameVal)
     // set value to local storage
     let getCity = localStorage.setItem("cityNames", JSON.stringify(cityList));
     displaySearchHistory();
@@ -32,18 +32,16 @@ function displaySearchHistory(){
     let searchHistoryEl =  document.querySelector("#search")
     searchHistoryEl.innerHTML = ""
     let cityListArr = JSON.parse(localStorage.getItem("cityNames")) || [];
-    for (let i = 0; i < cityListArr.length; i++) {
+    for (let i = 0; i < 3; i++) {
         let recentSearchBtn = document.createElement("button");
         recentSearchBtn.classList.add("searchHistoryBtns");
         recentSearchBtn.textContent = cityListArr[i];
         searchHistoryEl.append(recentSearchBtn);
     }
-    // create a variable = array in local storage using getItem
-    // for loop through the array of city names
-        // create a button to each city in the array 
-        // add class 
-        // text.content to add to button
-        // append button to div (#search)
+    // to press recent city search buttons to display current and 5 day forecast
+    // click button to take to certain page
+    // how does it know what the button says
+    // create a click event
 }
 
 //    get city name for display and latitude/longitude for weather api (input value)

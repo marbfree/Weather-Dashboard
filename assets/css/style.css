@@ -10,3 +10,11 @@ body {
 .fontSize {
     font-size: .9em;
 }
+
+.searchHistoryBtns {
+    margin-top: 5px;
+    background-color: rgb(224, 26, 4);
+    border-radius: 25%;
+    align-items: center;
+    color: aliceblue;
+}
