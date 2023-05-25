@@ -19,3 +19,11 @@ body {
     color: aliceblue;
     margin-left: 11px;
 }
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: visible;
+}

@@ -1,4 +1,4 @@
-let apiKey = 'd9e8fa6428a49966fe0b0aa58e369bf7'
+let apiKey = 'd9e8fa6428a49966fe0b0aa58e369bf7';
 var submitButton = document.querySelector(".btn");
 let date = document.getElementById("currentDate");
 let nextDate = document.getElementById("nextDay");
@@ -8,15 +8,15 @@ let fourDay = document.getElementById("fourDay");
 let fiveDay = document.getElementById("fiveDay");
 let cityList = JSON.parse(localStorage.getItem("cityNames")) || [];
 let cityHistoryBtns = document.querySelector(".searchHistoryBtns");
-let searchHistoryEl =  document.querySelector("#search")
-let clearInput = document.querySelector('#cityValue')
+let searchHistoryEl =  document.querySelector("#search");
+let clearInput = document.querySelector('#cityValue');
 
 date.textContent = dayjs().format('MM/DD/YYYY');
 nextDate.textContent = dayjs().add(1, "day").format('MM/DD/YYYY');
-twoDay.textContent = dayjs().add(2, "day").format('MM/DD/YYYY')
-threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YYYY')
-fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YYYY')
-fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY')
+twoDay.textContent = dayjs().add(2, "day").format('MM/DD/YYYY');
+threeDay.textContent = dayjs().add(3, "day").format('MM/DD/YYYY');
+fourDay.textContent = dayjs().add(4, "day").format('MM/DD/YYYY');
+fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY');
 
 // this function gets the value from the input and sets to local storage
 function getApi(){
@@ -26,12 +26,11 @@ function getApi(){
     displaySearchHistory();
     console.log(getCity);
     searchApi(cityNameVal);
-    clearInput.value = "" ;
+    // clearInput.value = "" ;
 };
 
 // this function displays the recent search history below search button
 function displaySearchHistory(){
-    // let searchHistoryEl =  document.querySelector("#search")
     searchHistoryEl.innerHTML = ""
     let cityListArr = JSON.parse(localStorage.getItem("cityNames")) || [];
     for (let i = 0; i < 3; i++) {
@@ -40,25 +39,23 @@ function displaySearchHistory(){
         recentSearchBtn.classList.add("searchHistoryBtns");
         recentSearchBtn.textContent = cityListArr[i];
         searchHistoryEl.append(recentSearchBtn);
-
 }};
 
-// input.value = "" - to reset input area
-// data search attribute, for loop 
-  // to press recent city search buttons to display current and 5 day forecast
-    // click button to take to certain page
-    // how does it know what the button says
-    // create a click event
-
-//    get city name for display and latitude/longitude for weather api (input value)
-  function searchApi(cityNameVal){
-        console.log(cityNameVal);  
+//  get city name for display and latitude/longitude for weather api (input value)
+function searchApi(cityNameVal){
+    console.log(cityNameVal);  
 
     let requestUrl = `https://api.openweathermap.org/geo/1.0/direct?q=` + cityNameVal + `&limit=1&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
     
     fetch(requestUrl)
+    
         .then(function (response){
-            return response.json();
+            // if (response.status === 400){
+            //     alert("Something went wrong!  Please enter a city Name.")
+            // }else {
+            
+            return response.json()
+            
         })
         .then(function (data){
             console.log(data);
@@ -66,9 +63,7 @@ function displaySearchHistory(){
               let latDaily = data[0].lat;
             let city = document.getElementById('currentCity'); 
             city.textContent = data[0].name;
-        
 
-        
 //  2nd Api call to get weather data using latitude and longitude retreived from first api call
     let requestUrlLatLon = `https://api.openweathermap.org/data/2.5/weather?lat=` + latDaily + `&lon=` + lonDaily + `&units=imperial&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
     
@@ -80,13 +75,8 @@ function displaySearchHistory(){
             console.log(data);
             let weather = document.getElementById('currentWeather');
             let temp = document.getElementById('currentTemp');    
-            // let icon = document.getElementById('weatherIcon');
             weather.textContent = "Current Sky: " + data.weather[0].main;
             temp.textContent = "Current Temp: " + data.main.temp + " °F";
-            // if (data.weather[0].main === Clear){
-            //     let icon = document.createElement("i");
-            //     icon.classList.add('fa-light fa-sun');
-            // }
 
     let fiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=` + latDaily + `&lon=` + lonDaily + `&units=imperial&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
   
@@ -130,24 +120,23 @@ function displaySearchHistory(){
         fiveSky.textContent = "Sky: " + data.list[4].weather[0].main;
         fiveTemp.textContent = "Temp: " + data.list[4].main.temp + ' °F';
         fiveWind.textContent = "Wind Speed: " + data.list[4].wind.speed;
+
 })
 })
 })};
 
+// Grabs attribute and displays weather for recently searched cities
 function searchHistoryClick(e) {
     let entryButton = e.target
     let search = entryButton.getAttribute("data-search");
     searchApi(search);
-    // if it doesn't match, return
 }
 
+// submit button click event to run weather api
 submitButton.addEventListener("click", getApi);
-searchHistoryEl.addEventListener("click", searchHistoryClick)
-displaySearchHistory()
 
+// recent search target click to display recent search weather
+searchHistoryEl.addEventListener("click", searchHistoryClick);
 
-//figure out how to use icons to page
-// how to click on recent cities to view their data
-// one event listener, variable with the id "search"
-// function searchHistory(), use e for event listener
-// getAttribute
+// calls the function to display the search history
+displaySearchHistory();
