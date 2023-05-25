@@ -21,6 +21,10 @@ fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY');
 // this function gets the value from the input and sets to local storage
 function getApi(){
     let cityNameVal = document.querySelector("input").value;
+    if(!cityNameVal){
+        alert("Please enter a city name to view the weather forecast.")
+        return;
+    }
     let getCity = localStorage.setItem("cityNames", JSON.stringify(cityList));
     cityList.unshift(cityNameVal);
     displaySearchHistory();
@@ -127,6 +131,7 @@ function searchApi(cityNameVal){
 
 // Grabs attribute and displays weather for recently searched cities
 function searchHistoryClick(e) {
+    // e.preventDefault();
     let entryButton = e.target
     let search = entryButton.getAttribute("data-search");
     searchApi(search);
