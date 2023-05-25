@@ -22,7 +22,7 @@ fiveDay.textContent = dayjs().add(5, "day").format('MM/DD/YYYY');
 function getApi(){
     let cityNameVal = document.querySelector("input").value;
     if(!cityNameVal){
-        alert("Please enter a city name to view the weather forecast.")
+        alert("Please enter a city name to view the weather forecast.");
         return;
     }
     let getCity = localStorage.setItem("cityNames", JSON.stringify(cityList));
