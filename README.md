@@ -29,6 +29,7 @@ Click on the recent search history to display your most recent cities weather.
 https://marbfree.github.io/Weather-Dashboard/
 
 ![alt text](./assets/images/WeatherDashboard.png)
+![alt text](./assets/images/WeatherSearch.png)
 
 
 ## How to Contribute

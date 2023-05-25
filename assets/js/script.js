@@ -45,6 +45,7 @@ function displaySearchHistory(){
         recentSearchBtn.setAttribute("data-search", cityList[i])
         recentSearchBtn.classList.add("searchHistoryBtns");
         recentSearchBtn.textContent = cityListArr[i];
+        console.log(cityListArr);
         searchHistoryEl.append(recentSearchBtn);
 }};
 
@@ -125,6 +126,8 @@ function searchApi(cityNameVal){
 })
 })
 })};
+
+
 
 // Grabs attribute and displays weather for recently searched cities
 function searchHistoryClick(e) {
