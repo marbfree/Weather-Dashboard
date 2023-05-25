@@ -10,6 +10,9 @@ let cityList = JSON.parse(localStorage.getItem("cityNames")) || [];
 let cityHistoryBtns = document.querySelector(".searchHistoryBtns");
 let searchHistoryEl =  document.querySelector("#search");
 let clearInput = document.querySelector('#cityValue');
+let showCurrentEl = document.querySelector('.current');
+let showFiveDayEl = document.querySelector('.fiveDay');
+let showCardsEl = document.querySelector('.cards');
 
 date.textContent = dayjs().format('MM/DD/YYYY');
 nextDate.textContent = dayjs().add(1, "day").format('MM/DD/YYYY');
@@ -128,9 +131,6 @@ function searchHistoryClick(e) {
     e.preventDefault();
     let entryButton = e.target
     let search = entryButton.getAttribute("data-search");
-    let showCurrentEl = document.querySelector('.current');
-    let showFiveDayEl = document.querySelector('.fiveDay');
-    let showCardsEl = document.querySelector('.cards');
     showCurrentEl.classList.replace("hidden", "visible");
     showFiveDayEl.classList.replace("hidden", "visible");
     showCardsEl.classList.replace("hidden", "visible");
@@ -141,9 +141,6 @@ function searchHistoryClick(e) {
 submitButton.addEventListener("click", getApi)
 
 submitButton.addEventListener("click", function(){
-    let showCurrentEl = document.querySelector('.current');
-    let showFiveDayEl = document.querySelector('.fiveDay');
-    let showCardsEl = document.querySelector('.cards');
     showCurrentEl.classList.replace("hidden", "visible");
     showFiveDayEl.classList.replace("hidden", "visible");
     showCardsEl.classList.replace("hidden", "visible");
