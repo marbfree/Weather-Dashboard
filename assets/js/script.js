@@ -30,7 +30,7 @@ function getApi(){
     displaySearchHistory();
     console.log(getCity);
     searchApi(cityNameVal);
-    // clearInput.value = "" ;
+    clearInput.value = "" ;
 };
 
 // this function displays the recent search history below search button
@@ -52,14 +52,8 @@ function searchApi(cityNameVal){
     let requestUrl = `https://api.openweathermap.org/geo/1.0/direct?q=` + cityNameVal + `&limit=1&appid=d9e8fa6428a49966fe0b0aa58e369bf7`
     
     fetch(requestUrl)
-    
         .then(function (response){
-            // if (response.status === 400){
-            //     alert("Something went wrong!  Please enter a city Name.")
-            // }else {
-            
-            return response.json()
-            
+            return response.json()     
         })
         .then(function (data){
             console.log(data);
@@ -131,14 +125,29 @@ function searchApi(cityNameVal){
 
 // Grabs attribute and displays weather for recently searched cities
 function searchHistoryClick(e) {
-    // e.preventDefault();
+    e.preventDefault();
     let entryButton = e.target
     let search = entryButton.getAttribute("data-search");
+    let showCurrentEl = document.querySelector('.current');
+    let showFiveDayEl = document.querySelector('.fiveDay');
+    let showCardsEl = document.querySelector('.cards');
+    showCurrentEl.classList.replace("hidden", "visible");
+    showFiveDayEl.classList.replace("hidden", "visible");
+    showCardsEl.classList.replace("hidden", "visible");
     searchApi(search);
 }
 
 // submit button click event to run weather api
-submitButton.addEventListener("click", getApi);
+submitButton.addEventListener("click", getApi)
+
+submitButton.addEventListener("click", function(){
+    let showCurrentEl = document.querySelector('.current');
+    let showFiveDayEl = document.querySelector('.fiveDay');
+    let showCardsEl = document.querySelector('.cards');
+    showCurrentEl.classList.replace("hidden", "visible");
+    showFiveDayEl.classList.replace("hidden", "visible");
+    showCardsEl.classList.replace("hidden", "visible");
+});
 
 // recent search target click to display recent search weather
 searchHistoryEl.addEventListener("click", searchHistoryClick);
