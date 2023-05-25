@@ -28,8 +28,10 @@ function getApi(){
         alert("Please enter a city name to view the weather forecast.");
         return;
     }
+    cityList.push(cityNameVal);
+    // if city is present then do nothing, else push cityname, into city list array indexOf
     let getCity = localStorage.setItem("cityNames", JSON.stringify(cityList));
-    cityList.unshift(cityNameVal);
+    // cityList.unshift(cityNameVal);
     displaySearchHistory();
     console.log(getCity);
     searchApi(cityNameVal);
