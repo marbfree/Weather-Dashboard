@@ -84,7 +84,6 @@ function searchApi(cityNameVal){
             let iconUrl = "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png"
             imgIcon.setAttribute("src", iconUrl);
             icon.append(imgIcon);
-
             weather.textContent = "Current Sky: " + data.weather[0].main;
             temp.textContent = "Current Temp: " + data.main.temp + " °F";
 
@@ -98,8 +97,6 @@ function searchApi(cityNameVal){
         .then(function(data){
         console.log(data);
         
-       
-
         let oneSky = document.getElementById("dayOneSky");    
         let oneTemp = document.getElementById("dayOneTemp");
         let oneWind = document.getElementById("dayOneWind");

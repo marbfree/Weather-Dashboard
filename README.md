@@ -18,6 +18,8 @@ Type in a city to display the current and five day weather forecast.  Utilize yo
 Thank you to the askBCS team for helping me problem solve a few issues.  
 Thank you to my tutor, Sandy Smith, for going over the gist of the project.
 Thank you to my tutor, Benicio Lopez, for helping me code lines 37-46 to display the recent city search.
+Thank you John Hysong for helping me with javascript lines 42-47 
+THank you Gurmeet Singh for helping me understand how to add icons with lines 83-86
 
 ## Features
 
