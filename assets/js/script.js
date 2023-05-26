@@ -42,7 +42,7 @@ function getApi(){
 function displaySearchHistory(){
     searchHistoryEl.innerHTML = ""
     let cityListArr = JSON.parse(localStorage.getItem("cityNames")) || [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < cityListArr.length; i++) {
         let recentSearchBtn = document.createElement("button");
         recentSearchBtn.setAttribute("data-search", cityList[i])
         recentSearchBtn.classList.add("searchHistoryBtns");
@@ -78,7 +78,13 @@ function searchApi(cityNameVal){
         .then(function (data){
             console.log(data);
             let weather = document.getElementById('currentWeather');
-            let temp = document.getElementById('currentTemp');    
+            let temp = document.getElementById('currentTemp');  
+            let icon = document.querySelector('.icon'); 
+            let imgIcon = document.createElement('img');
+            let iconUrl = "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png"
+            imgIcon.setAttribute("src", iconUrl);
+            icon.append(imgIcon);
+
             weather.textContent = "Current Sky: " + data.weather[0].main;
             temp.textContent = "Current Temp: " + data.main.temp + " °F";
 
